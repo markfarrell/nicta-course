@@ -10,13 +10,13 @@ import Course.Validation
 -- Law of composition: forall f g f'. (Functor f') => (f <<< g <$> f') ≅ (f <$> (g <$> f'))
 
 class Functor f where
-  (<$>) :: forall a b. (a -> b) -> f a -> f b
+  fmap :: forall a b. (a -> b) -> f a -> f b
 
 instance functorId :: Functor Id where
-  (<$>) = mapId
+  fmap = mapId
 
 instance functorOptional :: Functor Optional where
-  (<$>) = mapOptional
+  fmap = mapOptional
 
 instance functorValidation :: Functor Validation where
-  (<$>) = mapValidation
+  fmap = mapValidation
