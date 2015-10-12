@@ -3,6 +3,7 @@ module Course.Applicative where
 import Course.Functor
 import Course.Id
 import Course.Optional
+import Course.Validation
 
 class (Functor f) <= Applicative f where
   pure :: forall a. a -> f a
@@ -21,6 +22,10 @@ instance applicativeOptional :: Applicative Optional where
   pure a = Full a
   ap (Full f) (Full a) = Full (f a)
   ap _ _ = Empty
+
+instance applicativeValidation :: Applicative Validation where
+  pure = pureValidation
+  ap = applyValidation
 
 lift2 :: forall f a b c. (Applicative f) => (a -> b -> c) -> f a -> f b -> f c
 lift2 f fa fb = f <$> fa <*> fb
