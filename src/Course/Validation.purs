@@ -34,5 +34,3 @@ valueOr (Value a) _ = a
 errorOr :: forall a. Validation a -> Err -> Err
 errorOr (Error e) _ = e
 errorOr (Value _) a = a
-
-
