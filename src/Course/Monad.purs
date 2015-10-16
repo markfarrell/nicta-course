@@ -17,4 +17,8 @@ instance monadOptional :: Monad Optional where
 
 instance monadValidation :: Monad Validation where
   (=<<) f (Error e) = (Error e)
-  (=<<) f (Value a) =  f a
+  (=<<) f (Value a) = f a
+
+-- (<*>) :: forall a b f. (Monad f) => f (a -> b) -> f a -> f b
+-- join :: forall a f. (Monad f) => f (f a) -> f a
+-- (>>=) :: forall a f. (Monad f) => f a -> (a -> f b) -> f b
