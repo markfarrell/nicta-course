@@ -25,3 +25,6 @@ valueOr (Value a) _ = a
 errorOr :: forall a. Validation a -> Err -> Err
 errorOr (Error e) _ = e
 errorOr (Value _) a = a
+
+appendErr :: Err -> Err -> Err
+appendErr e1 e2 = e1 ++ e2

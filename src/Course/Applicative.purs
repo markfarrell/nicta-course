@@ -1,9 +1,9 @@
 module Course.Applicative where
 
-import Course.Functor
 import Course.Id
 import Course.Optional
 import Course.Validation
+import Course.Functor
 
 class (Functor f) <= Applicative f where
   pure :: forall a. a -> f a
@@ -28,7 +28,7 @@ instance applicativeValidation :: Applicative Validation where
   ap (Value f) (Value a) = Value (f a)
   ap (Error e) (Value a) = Error e
   ap (Value f) (Error e) = Error e
-  ap (Error e1) (Error e2) = Error (e1 ++ e2)
+  ap (Error e1) (Error e2) = Error (appendErr e1 e2)
 
 lift2 :: forall f a b c. (Applicative f) => (a -> b -> c) -> f a -> f b -> f c
 lift2 f fa fb = f <$> fa <*> fb
