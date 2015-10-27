@@ -1,24 +1,10 @@
 module Course.Monad where
 
-import Course.Id
-import Course.Optional
-import Course.Validation
 import Course.Functor
 import Course.Applicative
 
 class (Applicative f) <= Monad f where
   bind :: forall a b. (a -> f b) -> f a -> f b
-
-instance monadId :: Monad Id where
-  bind f (Id a) = f a
-
-instance monadOptional :: Monad Optional where
-  bind f Empty = Empty
-  bind f (Full a) = f a
-
-instance monadValidation :: Monad Validation where
-  bind f (Error e) = (Error e)
-  bind f (Value a) = f a
 
 (=<<) = bind
 
