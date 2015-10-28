@@ -18,5 +18,3 @@ instance applicativeOptional :: Applicative Optional where
 instance monadOptional :: Monad Optional where
   bind f Empty = Empty
   bind f (Full a) = f a
-
-
